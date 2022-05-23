@@ -5,6 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon --experimental-specifier-resolution=node src/server.js",
+    "run": "node --experimental-specifier-resolution=node src/server.js",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --fix --ext .js,.ts,.jsx,.tsx",
     "format": "prettier --write \"./src\""
