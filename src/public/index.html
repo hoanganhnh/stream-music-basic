@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream music basic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/styles/grid.css">
+    <link rel="stylesheet" href="assets/styles/global.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="#"><i class="fas fa-home"></i></a>
+            <a href="#"><i class="fas fa-music"></i></a>
+            <a href="#"><i class="far fa-play-circle"></i></a>
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-bars"></i></a>
+        </nav>
+    </header>
+    
+    <div class="content-app">
+        <div class="display-control">
+            <div class="display-control__heading">
+                <div class="display-control__heading--icon-nav">
+                    <button class="color-icon"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div class="display-control__heading--info">
+                    <p>Now playing:</p>
+                    <h2 class="heading-audio">Sting 57th & 9th</h2>
+                </div>
+                <div class="display-control__heading--icon-plus">
+                    <button class="color-icon"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="display-control__img">
+                <div class="item-img">
+    
+                </div>
+            </div>
+            <div class="display-control__gruop-icon">
+                <div><button class="btn-repeat"><i class="fas fa-undo-alt"></i></button></div>
+                <div><button class="btn-previous"><i class="fas fa-backward"></i></button></div>
+                <div><button class="btn-pause">
+                        <i class="fas fa-pause-circle"></i>
+                        <i class="fas fa-play-circle"></i>
+                    </button></div>
+                <div><button class="btn-next"><i class="fas fa-forward"></i></button></div>
+                <div><button class="btn-random"><i class="fas fa-random"></i></button></div>
+            </div>
+            <div class="seekslider">
+                <div class="time">
+                    <span class="curtime">
+                        00:00
+                    </span>
+                    <span class="durtime">
+                        00:00
+                    </span>
+                </div>
+                <input id="progress" class="progress" type="range" value="0" min="0" max="100">
+            </div>
+        </div>
+        <div class="list-item">
+            <div class="grid">
+                <div class="row">
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>
