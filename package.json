@@ -4,7 +4,8 @@
   "description": "stream music with nodejs",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --fix --ext .js,.ts,.jsx,.tsx",
     "format": "prettier --write \"./src\""
