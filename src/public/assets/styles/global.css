@@ -173,6 +173,10 @@ i {
         margin-top: 455px;
     }
 
+    .item-music {
+        margin-bottom: 8px;
+    }
+
     .item {
         display: flex;
         /* width:100%; */

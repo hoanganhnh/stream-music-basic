@@ -1,65 +1,68 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-useless-concat */
 /* eslint-disable no-unused-expressions */
+
+const API_PLAY_MUSIC_BASE = "http://localhost:3000/play";
 const songDatas = [
     {
         srcImg: "./assets/img/1.jfif",
         nameAudio: "Feded",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/1.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/0`,
     },
     {
         srcImg: "./assets/img/2.jfif",
         nameAudio: "Robin Hustin",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/2.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/2`,
     },
     {
         srcImg: "./assets/img/3.jfif",
         nameAudio: "Linked",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/3.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/3`,
     },
     {
         srcImg: "./assets/img/4.jfif",
         nameAudio: "Unknown Brain",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/4.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/4`,
     },
     {
         srcImg: "./assets/img/5.jfif",
         nameAudio: "Ngôi Nhà Hoa Hồng",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/5.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/5`,
     },
     {
         srcImg: "./assets/img/6.jfif",
         nameAudio: "The Ocean",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/6.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/6`,
     },
     {
         srcImg: "./assets/img/7.jfif",
         nameAudio: "Hẹn Yêu",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/7.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/7`,
     },
     {
         srcImg: "./assets/img/8.jfif",
         nameAudio: "Feded",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/8.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/8`,
     },
     {
         srcImg: "./assets/img/9.jfif",
         nameAudio: "Zedd - Beautiful Now",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/9.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/9`,
     },
     {
         srcImg: "./assets/img/10.jfif",
         nameAudio: "Waiting For Love",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: "./assets/audios/10.mp3",
+        srcAudio: `${API_PLAY_MUSIC_BASE}/1`,
     },
 ];
 
@@ -67,24 +70,24 @@ function render() {
     return songDatas
         .map(
             song => `
-        <div class="col c-12">
-        <a href="#" class="item song1">
-            <div class="item__img">
-                <img class="img" src="${song.srcImg}" alt="">
-            </div>
-            <div class="item__info">
-                <h2 class="name-audio">${song.nameAudio}</h2>
-                <p>${song.description}</p>
-            </div>
-            <div class="item__icon">
-                <button>
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
-            </div>
-            <audio id="song" class="song1">
-                <source src="${song.srcAudio}" type="audio/mpeg"> </audio>
-            </audio>
-        </a>
+        <div class="col c-12 item-music">
+            <a href="#" class="item song1">
+                <div class="item__img">
+                    <img class="img" src="${song.srcImg}" alt="">
+                </div>
+                <div class="item__info">
+                    <h2 class="name-audio">${song.nameAudio}</h2>
+                    <p>${song.description}</p>
+                </div>
+                <div class="item__icon">
+                    <button>
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                </div>
+                <audio id="song" class="song1">
+                    <source src="${song.srcAudio}" type="audio/mpeg"></audio>
+                </audio>
+            </a>
         </div>
         `,
         )
@@ -115,7 +118,6 @@ const imgRotate = displayImg.animate([{ transform: "rotate(360deg)" }], {
 imgRotate.pause();
 
 const app = {
-    isSeeking: false,
     displayHeadingAudio(indexName) {
         const nameAudio = nameAudios[indexName].textContent;
         displayHeading.textContent = nameAudio;
@@ -179,7 +181,6 @@ const app = {
         });
     },
     next() {
-        // eslint-disable-next-line no-plusplus
         app.currentIndex++;
         if (app.currentIndex > audios.length - 1) {
             app.currentIndex = 0;
@@ -193,7 +194,6 @@ const app = {
         return audios[app.currentIndex];
     },
     previous() {
-        // eslint-disable-next-line no-plusplus
         app.currentIndex--;
         if (app.currentIndex < 0) {
             app.currentIndex = audios.length - 1;
