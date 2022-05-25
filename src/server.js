@@ -1,6 +1,6 @@
-import app from "./src/app";
-import { port } from "./src/configs";
-import logger from "./src/core/logger";
+import app from "./app";
+import { port } from "./configs";
+import logger from "./core/logger";
 
 app.listen(port, () => {
     logger.info(`server running on port : ${port}`);
