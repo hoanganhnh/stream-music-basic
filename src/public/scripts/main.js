@@ -2,7 +2,7 @@
 /* eslint-disable no-useless-concat */
 /* eslint-disable no-unused-expressions */
 
-const API_PLAY_MUSIC_BASE = "http://localhost:3000/play";
+const API_PLAY_MUSIC_BASE = "https://music-stream-anhnh.herokuapp.com/play";
 const songDatas = [
     {
         srcImg: "./assets/img/1.jfif",
