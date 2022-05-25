@@ -1,9 +1,13 @@
-import { config } from "dotenv";
-
-config();
+require("dotenv").config();
 
 // Mapper for environment variables
-export const environment = process.env.NODE_ENV;
-export const port = process.env.PORT;
+const environment = process.env.NODE_ENV;
+const port = process.env.PORT;
 
-export const logDirectory = process.env.LOG_DIR;
+const logDirectory = process.env.LOG_DIR;
+
+module.exports = {
+    environment,
+    port,
+    logDirectory,
+};

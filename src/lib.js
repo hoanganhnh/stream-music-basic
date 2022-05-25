@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
+const path = require("path");
+const fs = require("fs");
 
 let id = 0;
-export const getAllFiles = (dir, done) => {
+const getAllFiles = (dir, done) => {
     let results = [];
     // eslint-disable-next-line consistent-return
     fs.readdir(dir, (err, list) => {
@@ -46,4 +46,4 @@ function audioList(dir, done) {
     });
 }
 
-export default audioList;
+module.exports = audioList;

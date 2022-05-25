@@ -1,10 +1,10 @@
-import express from "express";
-import bodyParser from "body-parser";
-import path from "path";
-import fs from "fs";
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const fs = require("fs");
 
-import audioList from "./lib";
-import logger from "./core/logger";
+const audioList = require("./lib");
+const logger = require("./core/logger");
 
 const app = express();
 
@@ -83,4 +83,5 @@ app.get("/play/:id", (req, res) => {
             });
     });
 });
-export default app;
+
+module.exports = app;

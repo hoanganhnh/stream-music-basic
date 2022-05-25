@@ -1,9 +1,9 @@
-import { createLogger, transports, format } from "winston";
-import DailyRotateFile from "winston-daily-rotate-file";
-import fs from "fs";
-import path from "path";
+const { createLogger, transports, format } = require("winston");
+const DailyRotateFile = require("winston-daily-rotate-file");
+const path = require("path");
+const fs = require("fs");
 
-import { environment, logDirectory } from "../configs";
+const { environment, logDirectory } = require("../configs");
 
 let dir = logDirectory;
 if (!dir) dir = path.resolve("logs");
@@ -33,7 +33,7 @@ const options = {
     },
 };
 
-export default createLogger({
+module.exports = createLogger({
     transports: [
         new transports.Console({
             level: logLevel,
