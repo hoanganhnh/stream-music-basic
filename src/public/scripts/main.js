@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-useless-concat */
 /* eslint-disable no-unused-expressions */
@@ -8,61 +9,51 @@ const songDatas = [
         srcImg: "./assets/img/1.jfif",
         nameAudio: "Feded",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/0`,
     },
     {
         srcImg: "./assets/img/2.jfif",
         nameAudio: "Robin Hustin",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/2`,
     },
     {
         srcImg: "./assets/img/3.jfif",
         nameAudio: "Linked",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/3`,
     },
     {
         srcImg: "./assets/img/4.jfif",
         nameAudio: "Unknown Brain",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/4`,
     },
     {
         srcImg: "./assets/img/5.jfif",
         nameAudio: "Ngôi Nhà Hoa Hồng",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/5`,
     },
     {
         srcImg: "./assets/img/6.jfif",
         nameAudio: "The Ocean",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/6`,
     },
     {
         srcImg: "./assets/img/7.jfif",
         nameAudio: "Hẹn Yêu",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/7`,
     },
     {
         srcImg: "./assets/img/8.jfif",
         nameAudio: "Feded",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/8`,
     },
     {
         srcImg: "./assets/img/9.jfif",
         nameAudio: "Zedd - Beautiful Now",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/9`,
     },
     {
         srcImg: "./assets/img/10.jfif",
         nameAudio: "Waiting For Love",
         description: "Alan Walker-You were the shadow to my light",
-        srcAudio: `${API_PLAY_MUSIC_BASE}/1`,
     },
 ];
 
@@ -84,9 +75,7 @@ function render() {
                         <i class="fas fa-ellipsis-h"></i>
                     </button>
                 </div>
-                <audio id="song" class="song1">
-                    <source src="${song.srcAudio}" type="audio/mpeg"></audio>
-                </audio>
+                <audio id="song" class="song1"/>
             </a>
         </div>
         `,
@@ -118,6 +107,10 @@ const imgRotate = displayImg.animate([{ transform: "rotate(360deg)" }], {
 imgRotate.pause();
 
 const app = {
+    resetAudio() {
+        const preIndex = app.currentIndex;
+        audios[preIndex].removeAttribute("src");
+    },
     displayHeadingAudio(indexName) {
         const nameAudio = nameAudios[indexName].textContent;
         displayHeading.textContent = nameAudio;
@@ -132,8 +125,9 @@ const app = {
             items[index].style.backgroundColor = "#fff";
         });
 
-        items[indexAudio].style.backgroundColor = "#d1ceff";
         const audio = audios[indexAudio];
+        audio.setAttribute("src", `${API_PLAY_MUSIC_BASE}/${indexAudio}`);
+        items[indexAudio].style.backgroundColor = "#d1ceff";
         audio.play();
         audio.currentTime = 0;
 
@@ -168,7 +162,6 @@ const app = {
     },
     run() {
         items.forEach((item, index) => {
-            // eslint-disable-next-line no-param-reassign
             item.onclick = () => {
                 app.playAudio(index);
                 app.displayImgae(index);
@@ -181,6 +174,7 @@ const app = {
         });
     },
     next() {
+        app.resetAudio();
         app.currentIndex++;
         if (app.currentIndex > audios.length - 1) {
             app.currentIndex = 0;
@@ -194,6 +188,7 @@ const app = {
         return audios[app.currentIndex];
     },
     previous() {
+        app.resetAudio();
         app.currentIndex--;
         if (app.currentIndex < 0) {
             app.currentIndex = audios.length - 1;
@@ -233,6 +228,7 @@ const app = {
         const randomIndex = Math.floor(
             Math.floor(Math.random() * audios.length),
         );
+        app.resetAudio();
         app.currentIndex = randomIndex;
         app.playAudio(app.currentIndex);
         app.displayImgae(app.currentIndex);
