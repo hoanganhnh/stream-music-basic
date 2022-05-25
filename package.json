@@ -2,10 +2,10 @@
   "name": "stream-music-basic",
   "version": "1.0.0",
   "description": "stream music with nodejs",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon src/server.js",
-    "build": "node src/server.js",
+    "start": "nodemon server.js",
+    "build": "node server.js",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --fix --ext .js,.ts,.jsx,.tsx",
     "format": "prettier --write \"./src\""
