@@ -18,8 +18,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-session": "^1.17.3",
     "winston": "^3.7.2",
     "winston-daily-rotate-file": "^4.6.1"
   },
@@ -32,7 +34,7 @@
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2"
   },
-   "engines": {
+  "engines": {
     "node": "16.x"
   }
 }

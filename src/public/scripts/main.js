@@ -99,6 +99,17 @@ const displayImg = $(".item-img");
 const displayHeading = $(".heading-audio");
 const process = $(".progress");
 
+(function getCurrentDate() {
+    const timeCurrent = $(".time-current");
+    const currentdate = new Date();
+
+    const datetime = `${currentdate.getDate()}/${
+        currentdate.getMonth() + 1
+    }/${currentdate.getFullYear()}`;
+
+    timeCurrent.innerHTML = datetime;
+})();
+
 const imgRotate = displayImg.animate([{ transform: "rotate(360deg)" }], {
     duration: 10000,
     iterations: Infinity,

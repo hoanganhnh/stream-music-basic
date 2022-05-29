@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const path = require("path");
 const fs = require("fs");
 
@@ -28,21 +30,66 @@ app.use(
         parameterLimit: 50000,
     }),
 );
+// initialize cookie-parser to allow us access the cookies stored in the browser.
+app.use(cookieParser());
+// initialize express-session to allow us track the logged-in user across sessions.
+app.use(
+    session({
+        key: "user_sid",
+        secret: "hoanganh",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 600000,
+        },
+    }),
+);
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie("user_sid");
+    }
+    next();
 });
 
-app.get("/list", (req, res) => {
-    res.json(audioLists);
+// middleware function to check for logged-in users
+const sessionChecker = (req, res, next) => {
+    if (!req.session.user || !req.cookies.user_sid) {
+        res.redirect("/login");
+    }
+    next();
+};
+
+app.get("/", sessionChecker, (req, res) => {
+    res.redirect("/login");
 });
+
+app.get("/home", sessionChecker, (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/home.html"));
+});
+
+app.route("/login")
+    .get((req, res) => {
+        res.sendFile(path.join(__dirname, "/public/login.html"));
+    })
+    .post((req, res) => {
+        const { username } = req.body;
+
+        if (username) {
+            req.session.user = username;
+            res.redirect("/home");
+        }
+    });
+
+app.get("/list", sessionChecker, (req, res) => res.json(audioLists));
 
 // eslint-disable-next-line consistent-return
-app.get("/play/:id", (req, res) => {
-    if (!req.params.id) {
+app.get("/play/:id", sessionChecker, (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
         return res.status(400).json({ error: "requires a audio id" });
     }
-    const { id } = req.params;
     const audioIndex = audioLists.findIndex(item => item.id.toString() === id);
     if (audioIndex < 0) {
         return res.status(400).json({ error: "id didn't match any records" });

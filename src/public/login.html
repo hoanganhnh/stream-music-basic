@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="./assets/img/icons8-music-heart.gif" type="image/x-icon">
+    <link rel="stylesheet" href="assets/styles/grid.css">
+    <link rel="stylesheet" href="assets/styles/global.css">
+    <link rel="stylesheet" href="assets/styles/login.css">
+</head>
+
+<body>
+    <!-- The Modal -->
+    <div id="id01" class="modal">
+        <!-- Modal Content -->
+        <form class="modal-content animate">
+            <div class="container">
+                <label for="uname" class="user-name"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" required id="username">
+                <button type="submit" id="login">Login</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        const txtUsername = document.querySelector('#username')
+        const btnLogin = document.querySelector('#login')
+
+        btnLogin.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (txtUsername.value) {
+                window.localStorage.setItem('username', txtUsername.value);
+
+                fetch(`${window.location.origin}/login`, {
+                    method: "POST",
+                    body: JSON.stringify({ username: txtUsername.value }),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                    window.location.href = '/home';
+                }).catch((err) => {
+                    console.log(err);
+                })
+            }
+        })
+
+    </script>
+</body>
+
+</html>
