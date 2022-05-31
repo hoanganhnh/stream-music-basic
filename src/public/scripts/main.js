@@ -98,6 +98,29 @@ const play = $(".btn-pause .fa-play-circle");
 const displayImg = $(".item-img");
 const displayHeading = $(".heading-audio");
 const process = $(".progress");
+const iconMenu = $(".icon-menu");
+const toggleMenu = $(".toggle-menu");
+const menuContent = $(".toggle-menu__content");
+
+iconMenu.onclick = () => {
+    const classToggleMenu = toggleMenu.getAttribute("class");
+    if (classToggleMenu.includes("hidden")) {
+        toggleMenu.classList.remove("hidden");
+        toggleMenu.classList.add("show");
+        menuContent.classList.add("show-content");
+    }
+};
+
+window.onclick = event => {
+    if (event.target === toggleMenu) {
+        const classToggleMenu = toggleMenu.getAttribute("class");
+        if (classToggleMenu.includes("show")) {
+            menuContent.classList.remove("show-content");
+            toggleMenu.classList.remove("show");
+            toggleMenu.classList.add("hidden");
+        }
+    }
+};
 
 (function getCurrentDate() {
     const timeCurrent = $(".time-current");
@@ -108,6 +131,15 @@ const process = $(".progress");
     }/${currentdate.getFullYear()}`;
 
     timeCurrent.innerHTML = datetime;
+})();
+
+(function getCurrentUser() {
+    const userHeading = $(".display-control__heading--info p");
+    const username = window.localStorage.getItem("username");
+
+    if (username) {
+        userHeading.innerHTML = username.toUpperCase();
+    }
 })();
 
 const imgRotate = displayImg.animate([{ transform: "rotate(360deg)" }], {

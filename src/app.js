@@ -61,10 +61,6 @@ const sessionChecker = (req, res, next) => {
 };
 
 app.get("/", sessionChecker, (req, res) => {
-    res.redirect("/login");
-});
-
-app.get("/home", sessionChecker, (req, res) => {
     res.sendFile(path.join(__dirname, "/public/home.html"));
 });
 
@@ -77,7 +73,7 @@ app.route("/login")
 
         if (username) {
             req.session.user = username;
-            res.redirect("/home");
+            res.redirect("/");
         }
     });
 
