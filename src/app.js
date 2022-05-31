@@ -77,6 +77,13 @@ app.route("/login")
         }
     });
 
+app.get("/logout", (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.clearCookie("user_sid");
+        res.redirect("/login");
+    }
+});
+
 app.get("/list", sessionChecker, (req, res) => res.json(audioLists));
 
 // eslint-disable-next-line consistent-return

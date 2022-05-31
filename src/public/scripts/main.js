@@ -101,6 +101,7 @@ const process = $(".progress");
 const iconMenu = $(".icon-menu");
 const toggleMenu = $(".toggle-menu");
 const menuContent = $(".toggle-menu__content");
+const logoutBtn = $("#logout");
 
 iconMenu.onclick = () => {
     const classToggleMenu = toggleMenu.getAttribute("class");
@@ -120,6 +121,20 @@ window.onclick = event => {
             toggleMenu.classList.add("hidden");
         }
     }
+};
+
+logoutBtn.onclick = () => {
+    window.localStorage.removeItem("username");
+    fetch(`${window.location.origin}/logout`)
+        .then(data => {
+            // eslint-disable-next-line no-console
+            console.log(data);
+            window.location.href = "/login";
+        })
+        .catch(err => {
+            // eslint-disable-next-line no-console
+            console.log(err);
+        });
 };
 
 (function getCurrentDate() {
